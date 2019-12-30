@@ -15,7 +15,7 @@ Because of this, the library will have to be built with
 You can see the remaining license info at `LICENSE.md`.
 
 The only actual code that is made by me here is `meson.build`, which you do not
-have to use. It is licensed under the MIT license. It servers as a minimal
+have to use. It is licensed under the MIT license. It serves as a minimal
 example of how to build the library, but you should probably just write build
 scripts for your chosen build system.
 
