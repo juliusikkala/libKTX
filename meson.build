@@ -30,7 +30,7 @@ deps = [
 
 dep_inc = include_directories([ 'include' ])
 
-libktx = shared_library(
+libktx = static_library(
   'ktx',
   src,
   dependencies: deps,
