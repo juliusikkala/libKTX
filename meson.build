@@ -3,7 +3,7 @@ project(
   ['c'],
   default_options : [
     'buildtype=debugoptimized',
-    'warning_level=0'
+    'warning_level=1'
   ]
 )
 
