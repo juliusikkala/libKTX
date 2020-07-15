@@ -9,42 +9,49 @@ project(
 
 src = [
     'lib/checkheader.c',
-    'lib/errstr.c',
     'lib/filestream.c',
-    'lib/glloader.c',
     'lib/hashlist.c',
-    'lib/hashtable.c',
     'lib/memstream.c',
     'lib/swap.c',
     'lib/texture.c',
-    'lib/writer.c',
-    'lib/writer_v1.c'
+    'lib/writer1.c',
+    'lib/writer2.c',
+    'lib/vk_funcs.c',
+    'lib/vkformat_check.c',
+    'lib/texture.c',
+    'lib/texture1.c',
+    'lib/texture2.c',
+    'lib/vkformat_str.c',
+    'lib/dfdutils/vk2dfd.c',
+    'lib/dfdutils/interpretdfd.c',
+    'lib/dfdutils/queries.c',
+    'lib/dfdutils/createdfd.c',
+    'lib/vkloader.c',
 ]
 
-gl_dep = dependency('GL')
-incdir = include_directories([ 'include' ])
+cc = meson.get_compiler('c')
+m_dep = cc.find_library('m', required : false)
+dl_dep = cc.find_library('dl', required : false)
+zstd_dep = dependency('libzstd')
 
-deps = [
-    gl_dep
-]
-
+incdir = include_directories([ 'include', 'lib' ])
 dep_inc = include_directories([ 'include' ])
 
 libktx = shared_library(
   'ktx',
   src,
-  dependencies: deps,
   include_directories: [incdir],
+  dependencies: [m_dep, dl_dep, zstd_dep],
   install: true,
   c_args: [
-    '-DKTX_OPENGL=1',
     '-DSUPPORT_SOFTWARE_ETC_UNPACK=0',
+    '-DLIBKTX=1',
   ]
 )
 
 ktx_dep = declare_dependency(
   include_directories : dep_inc,
-  link_with : libktx,
-  dependencies: deps
+  dependencies: [m_dep, dl_dep, zstd_dep],
+  link_with : libktx
 )
 
