@@ -276,7 +276,7 @@ ktxTexture1_writeToStream(ktxTexture1* This, ktxStream* dststr)
 {
     KTX_header header = KTX_IDENTIFIER_REF;
     KTX_error_code result = KTX_SUCCESS;
-    ktx_uint8_t* pKvd;
+    ktx_uint8_t* pKvd = NULL;
     ktx_uint32_t level, levelOffset;
 
     if (!dststr) {
@@ -538,7 +538,7 @@ ktxTexture1_writeKTX2ToStream(ktxTexture1* This, ktxStream* dststr)
     KTX_header2 header = KTX2_IDENTIFIER_REF;
     KTX_error_code result;
     ktx_uint32_t kvdLen;
-    ktx_uint8_t* pKvd;
+    ktx_uint8_t* pKvd = NULL;
     ktx_uint32_t initialLevelPadLen;
     ktxLevelIndexEntry* levelIndex;
     ktx_uint32_t levelIndexSize;
